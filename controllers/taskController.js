@@ -43,7 +43,24 @@ const createTask = (req, res, next) => {
     sendResponse(201, "Successful", newTask, req, res);
   });
 };
+//get by bydefault ID
 
+Task.findById("")
+.then((data)=>{
+  console.log(data);
+})
+.catch((err)=>{
+  console.log(err);
+});
+}
+);
+
+
+
+
+
+
+//
 // const getAllTasks = (req, res, next) => {
 //   console.log("response from controller");
 //   res.send("response to the users");
@@ -69,3 +86,4 @@ const createTask = (req, res, next) => {
 module.exports.getAllTasks = getAllTasks;
 module.exports.createTask = createTask;
 module.exports.verifyPostRequest = verifyPostRequest;
+module.exports.findById = findById;
