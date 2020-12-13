@@ -63,6 +63,17 @@ app.put("/update/:id", (res, res) => {
     });
   }
 });
+app.delete("/delete/:id", (res, res) => {
+  const deleteTask = arr.find((task) => {
+    console.log("delete:", task.id == req.params.id);
+  });
+  console.log("deleteTask:", deleteTask);
+  let index = arr.indexOf(deleteTask);
+  console.log(index);
+  arr.splice(index, 1);
+  res.json(deleteTask);
+});
+
 // const getAllTasks = (req, res, next) => {
 //   console.log("response from controller");
 //   res.send("response to the users");
