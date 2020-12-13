@@ -43,24 +43,26 @@ const createTask = (req, res, next) => {
     sendResponse(201, "Successful", newTask, req, res);
   });
 };
-//get by bydefault ID
-
-Task.findById("")
-.then((data)=>{
-  console.log(data);
-})
-.catch((err)=>{
-  console.log(err);
+app.put("/update/:id", (res, res) => {
+  const updateTask = arr.find((task) => {
+    console.log("inside put:", task.id == req.params.id);
+    return task.id == req.params.id;
+  });
+  let key = Object.keys(updateTask);
+  console.log(key);
+  let reqKeys = Object.keys(req.body);
+  console.log(reqKeys);
+  if (key.includes(reqKeys)) {
+    updateTask.status = req.body.status;
+    res.status(200).json({
+      message: "Successful",
+    });
+  } else {
+    res.status(400).jason({
+      message: "Unsuccessful",
+    });
+  }
 });
-}
-);
-
-
-
-
-
-
-//
 // const getAllTasks = (req, res, next) => {
 //   console.log("response from controller");
 //   res.send("response to the users");
@@ -86,4 +88,3 @@ Task.findById("")
 module.exports.getAllTasks = getAllTasks;
 module.exports.createTask = createTask;
 module.exports.verifyPostRequest = verifyPostRequest;
-module.exports.findById = findById;
