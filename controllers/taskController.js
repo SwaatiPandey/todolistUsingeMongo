@@ -45,9 +45,21 @@ const createTask = (req, res, next) => {
       console.log(err);
     });
 };
+//find by id
+const findById = (req, res, next) => {
+  Task.findOne({ taskId: req.params.id })
+    .then((data) => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 //update
 const updateTask = (req, res, next) => {
-  console.log(req.params);
+  // console.log(req.params);
   Task.findOneAndUpdate(
     { taskId: req.params.id },
     { status: "completed" },
@@ -61,8 +73,21 @@ const updateTask = (req, res, next) => {
       console.log(err);
     });
 };
+//delete
+const deleteById = (req, res, next) => {
+  Task.findOneAndDelete({ taskId: req.params.id })
+    .then((data) => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 module.exports.getAllTasks = getAllTasks;
+module.exports.findById = findById;
 module.exports.createTask = createTask;
 module.exports.verifyPostRequest = verifyPostRequest;
 module.exports.updateTask = updateTask;
+module.exports.deleteById = deleteById;
