@@ -12,7 +12,7 @@ const taskSchema = new mongoose.Schema({
       validator: function (taskName) {
         // console.log("this is task validator", this);
         return this.taskName.trim().length;
-        return true;
+        // return true;
       },
       message: "task name should not be empty",
     },
