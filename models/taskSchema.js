@@ -18,7 +18,7 @@ const taskSchema = new mongoose.Schema({
       {
         validator: function () {
           const re = /<("[^"]*?"|'[^']*?'|[^'">])*>/;
-          if (re.test(this.firstName)) {
+          if (re.test(this.taskName)) {
             return false;
           }
         },
