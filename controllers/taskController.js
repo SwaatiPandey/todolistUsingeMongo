@@ -5,6 +5,7 @@ const Task = require("../models/taskSchema.js");
 const AppError = require("../helper/appErrorClass");
 const sendErrorMessage = require("../helper/sendError");
 const sendResponse = require("../helper/sendResponse");
+const uniqid = require("uniqid");
 
 const verifyPostRequest = (req, res, next) => {
   const requireProperties = ["taskName"];
@@ -34,7 +35,7 @@ const getAllTasks = (req, res, next) => {
 };
 
 const createTask = (req, res, next) => {
-  let newTask = new Task({ taskName: req.body.taskName });
+  let newTask = new Task({ taskId: uniqid() ,taskName: req.body.taskName });
   newTask
     .save()
     .then((data) => {
