@@ -22,7 +22,7 @@ const taskSchema = new mongoose.Schema({
             return false;
           }
         },
-        message: "Firstname cannot be HTML",
+        message: "taskName cannot be HTML",
       },
     ],
   },
