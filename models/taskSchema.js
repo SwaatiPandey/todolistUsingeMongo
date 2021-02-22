@@ -11,9 +11,9 @@ const taskSchema = new mongoose.Schema({
     validate: [
       {
         validator: function (taskName) {
-          // console.log("this is task validator", this);
+          
           return this.taskName.trim().length;
-          // return true;
+        
         },
         message: "task name should not be empty",
       },
@@ -43,9 +43,7 @@ const taskSchema = new mongoose.Schema({
   completedAt: {
     type: Date,
   },
-  // sharedWith:{
-  //   type: [{mongoose.ObjectId}],
-  // },
+  
 });
 
 const Task = mongoose.model("Task", taskSchema);
