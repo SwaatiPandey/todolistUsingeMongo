@@ -8,14 +8,25 @@ const taskSchema = new mongoose.Schema({
   taskName: {
     type: String,
     required: [true, "Please enter task details"],
-    validate: {
-      validator: function (taskName) {
-        // console.log("this is task validator", this);
-        return this.taskName.trim().length;
-        // return true;
+    validate: [
+      {
+        validator: function (taskName) {
+          // console.log("this is task validator", this);
+          return this.taskName.trim().length;
+          // return true;
+        },
+        message: "task name should not be empty",
       },
-      message: "task name should not be empty",
-    },
+      {
+        validator: function () {
+          const re = /<("[^"]*?"|'[^']*?'|[^'">])*>/;
+          if (re.test(this.firstName)) {
+            return false;
+          }
+        },
+        message: "Firstname cannot be HTML",
+      },
+    ],
   },
   status: {
     type: String,
