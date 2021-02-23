@@ -24,6 +24,15 @@ const taskSchema = new mongoose.Schema({
         },
         message: "taskName cannot be HTML",
       },
+      {
+        validator: function () {
+          const re = /^[A-Za-z][A-Za-z0-9 -]*$/;
+          if (re.test(this.taskName)) {
+            return false;
+          }
+        },
+        message: "first character should be alphabet only",
+      }
     ],
   },
   status: {
