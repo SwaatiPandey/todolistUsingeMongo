@@ -31,7 +31,7 @@ const taskSchema = new mongoose.Schema({
             return false;
           }
         },
-        message: "first character should be alphabet only",
+        message: "first character should be alphabet only & special characters not allowed",
       }
     ],
   },
