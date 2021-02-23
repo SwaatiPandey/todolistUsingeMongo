@@ -44,6 +44,11 @@ const createTask = (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
+      sendErrorMessage(
+        new AppError(500, "unsuccessful", err.message),
+        req,
+        res
+      );
     });
 };
 //find by id
