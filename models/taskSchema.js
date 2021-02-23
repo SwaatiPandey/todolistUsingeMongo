@@ -16,7 +16,7 @@ const taskSchema = new mongoose.Schema({
         message: "task name should not be empty",
       },
       {
-        validator: function () {
+        validator: function (taskName) {
           const re = /<("[^"]*?"|'[^']*?'|[^'">])*>/;
           if (re.test(this.taskName)) {
             return false;
@@ -25,9 +25,9 @@ const taskSchema = new mongoose.Schema({
         message: "taskName cannot be HTML",
       },
       {
-        validator: function () {
+        validator: function (taskName) {
           const re = /^[A-Za-z][A-Za-z0-9 -]*$/;
-          if (re.test(this.taskName)) {
+          if (!re.test(this.taskName)) {
             return false;
           }
         },
