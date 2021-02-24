@@ -73,7 +73,22 @@ const updateTask = (req, res, next) => {
   // console.log(req.params);
   Task.findOneAndUpdate(
     { taskId: req.params.id },
-    { taskName: req.body.taskName, status: "completed" },
+    { taskName: req.body.taskName },
+    { new: true, useFindAndModify: false }
+  )
+    .then((data) => {
+      // console.log(data);
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const updateStatus = (req, res, next) => {
+  // console.log(req.params);
+  Task.findOneAndUpdate(
+    { taskId: req.params.id },
+    { status: "completed" },
     { new: true, useFindAndModify: false }
   )
     .then((data) => {
@@ -101,4 +116,5 @@ module.exports.findById = findById;
 module.exports.createTask = createTask;
 module.exports.verifyPostRequest = verifyPostRequest;
 module.exports.updateTask = updateTask;
+module.exports.updateStatus = updateStatus;
 module.exports.deleteById = deleteById;
