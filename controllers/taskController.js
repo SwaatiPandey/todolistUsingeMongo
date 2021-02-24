@@ -39,7 +39,7 @@ const createTask = (req, res, next) => {
   newTask
     .save()
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       sendResponse(201, "Successful", data, req, res);
     })
     .catch((err) => {
@@ -55,7 +55,7 @@ const createTask = (req, res, next) => {
 const findById = (req, res, next) => {
   Task.findById(req.params.id)
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       sendResponse(201, "Successfull", data, req, res);
     })
     .catch((err) => {
@@ -73,11 +73,11 @@ const updateTask = (req, res, next) => {
   // console.log(req.params);
   Task.findOneAndUpdate(
     { taskId: req.params.id },
-    { status: "completed" },
+    { taskName: req.body.taskName, status: "completed" },
     { new: true, useFindAndModify: false }
   )
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     })
     .catch((err) => {
@@ -88,7 +88,7 @@ const updateTask = (req, res, next) => {
 const deleteById = (req, res, next) => {
   Task.findOneAndDelete({ taskId: req.params.id })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     })
     .catch((err) => {
